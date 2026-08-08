@@ -1,0 +1,16 @@
+spring.application.name=BodegaAdita
+
+# 1. Credenciales de la base de datos
+spring.datasource.url=jdbc:postgresql://localhost:5432/TU_DB_AQUI
+spring.datasource.username=TU_USUARIO
+spring.datasource.password=TU_PASSWORD
+
+# 2. Esto evita que Spring borre o modifique las tablas creadas por script
+# Al arrancar, Spring Boot revisara que las clases java coincidan exactamente con el script de sql
+spring.jpa.hibernate.ddl-auto=validate
+
+# 3. Muestra las consultas SQL en la consola
+spring.jpa.show-sql=true
+
+# 4. Formatea el SQL en consola para que sea legible
+spring.jpa.properties.hibernate.format_sql=true

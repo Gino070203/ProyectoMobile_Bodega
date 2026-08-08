@@ -1,0 +1,28 @@
+# ===== Backend Spring Boot / Maven / Java =====
+BodegaAdita_Backend/target/
+BodegaAdita_Backend/*.class
+
+# Eclipse / STS (tu proyecto ya tiene estos archivos, se recomienda ignorarlos)
+BodegaAdita_Backend/.classpath
+BodegaAdita_Backend/.project
+BodegaAdita_Backend/.settings/
+BodegaAdita_Backend/.sts4-cache/
+BodegaAdita_Backend/.springBeans
+
+# IntelliJ (por si en algún punto cambias de IDE)
+BodegaAdita_Backend/.idea/
+BodegaAdita_Backend/*.iml
+
+# Credenciales reales — NUNCA subir
+BodegaAdita_Backend/src/main/resources/application.properties
+BodegaAdita_Backend/src/main/resources/application-local.properties
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Documentación interna del negocio - no se sube al repo
+Documentacion/
+
+# Eclipse/STS workspace metadata (a nivel de carpeta raíz del workspace)
+.metadata/
