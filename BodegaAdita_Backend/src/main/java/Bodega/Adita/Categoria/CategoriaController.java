@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
@@ -23,7 +25,11 @@ public class CategoriaController {
 
 	// retorno del codigo 201, que significa que el recurso fue creado
 	@PostMapping
-	public ResponseEntity<Categoria> agregarCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> agregarCategoria(@Valid @RequestBody CategoriaRequestDTO categoriaRequest) {
+
+		Categoria categoria = new Categoria(categoriaRequest.getNombre().toLowerCase(), categoriaRequest.getEsCajaLicores(),
+				categoriaRequest.getEstado().toLowerCase());
+
 		Categoria nuevaCategoria = servicio.agregarCategoria(categoria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(nuevaCategoria);
 	}
@@ -51,7 +57,11 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> modificarCategoria(@PathVariable Integer id, @RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> modificarCategoria(@PathVariable Integer id,
+			@Valid @RequestBody CategoriaRequestDTO categoriaRequest) {
+
+		Categoria categoria = new Categoria(categoriaRequest.getNombre().toLowerCase(), categoriaRequest.getEsCajaLicores(),
+				categoriaRequest.getEstado().toLowerCase());
 
 		Categoria categoriaActualizada = servicio.modificarCategoria(id, categoria);
 
@@ -65,7 +75,7 @@ public class CategoriaController {
 	@PutMapping("/{id}/desactivar")
 	public ResponseEntity<Categoria> desactivarCategoria(@PathVariable Integer id, @RequestParam String estado) {
 
-		Categoria categoriaDesactivada = servicio.desactivarCategoria(id, estado);
+		Categoria categoriaDesactivada = servicio.desactivarCategoria(id, estado.toLowerCase());
 
 		if (categoriaDesactivada == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
